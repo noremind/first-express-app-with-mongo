@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs') %>
+
+
+	<body>
+		<header class="header">
+			<%- include('partials/nav.ejs') %>
+		</header>
+
+		<main>
+			<section class="content">
+				<div class="container">
+					<h1 class="content__title">Posts:</h1>
+					<ul>
+						<% if (posts.length) { %>
+							<% posts.forEach(({ id , title, createdAt, text, author })=> { %>
+								<li>
+									<div class="posts">
+										<button data-id="<%= id  %>">Delete</button>
+										<h1 class="posts__title"><a class="posts__link" href="/posts/<%= id %>"><%= title %></a></h1>
+										<p class="posts__text"><%= text %></p>
+
+										<div class="posts__box">
+											<p class="posts__date"><%= createdAt.toLocaleDateString() %></p>
+											<p class="posts__date"><%= author %></p>
+										</div>
+									</div>
+								</li>
+								<% }) %>
+									<% } %>
+					</ul>
+				</div>
+			</section>
+		</main>
+
+
+		<script>
+			document.addEventListener('click', (e) => {
+				const id = e.target?.dataset?.id || null
+
+				if(id){
+					fetch(`/posts/${id}` , {
+						method: 'DELETE',
+					}).then(() => {
+						window.location.reload()
+					})
+				}
+			})
+		</script>
+	</body>
+
+</html>

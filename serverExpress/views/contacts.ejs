@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs') %>
+
+
+<body>
+	<header class="header">
+		<%- include('partials/nav.ejs') %>
+	</header>
+
+
+	<h1>Contacts</h1>
+	<!-- <ul>
+		<li><a href="">YouTube</a></li>
+		<li><a href="">Github</a></li>
+		<li><a href="">Instagram</a></li>
+	</ul> -->
+
+	<ul>
+		<% if (contacts.length) { %>
+			<% contacts.forEach(({ link , name })=> { %>
+				<li>
+					<a href="<%= link %>">
+						<%= name %>
+					</a>
+				</li>
+				<% }) %>
+					<% } %>
+	</ul>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs') %>
+
+<body>
+	<header class="header">
+		<%- include('partials/nav.ejs') %>
+	</header>
+
+	<main>
+		<section class="content">
+			<div class="container">
+				<form method="POST" action="/edit/<%= post.id %>?_method=PUT"  class="form">
+					<div class="form__flex">
+						<div class="form__box">
+							<label class="form__label" for="title">Post title</label>
+							<input class="form__input" name="title" type="text" value="<%= post.title %>">
+						</div>
+						<div class="form__box">
+							<label class="form__label" for="author">Author</label>
+							<input class="form__input" name="author" type="text" value="<%= post.author %>">
+						</div>
+					</div>
+					<p>Post text</p>
+					<textarea class="form__textarea" name="text" cols="30" rows="10"><%= post.text %></textarea>
+
+					<button type="submit" class="form__btn">Submit</button>
+				</form>
+			</div>
+		</section>
+	</main>
+</body>
+
+</html>
